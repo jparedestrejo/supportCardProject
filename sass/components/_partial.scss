@@ -47,6 +47,9 @@
     .rotate {
         transform: rotate(180deg);
     }
+    @supports (display: grid) {
+      // All of your GRID CSS code here.
+      
     .row {
         display:grid;
         grid-template-columns:12.5% 25% 25% 25% 12.5%;
@@ -99,3 +102,40 @@
       grid-column:5/6;
       grid-row:7/8;
     }
+  }
+  @supports not (display: grid) {
+    // All of your flexbox SCSS code here.
+    //make column classes
+  @mixin col($span-num) {
+   flex: 0 0 $one-column * $span-num;
+  }
+  //make offset classes
+  @mixin offset($offset-num) {
+   margin-left: $one-column * $offset-num;
+  }
+  
+  .row {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      align-content: space-between;
+      height: 100%;
+  }
+  .cell {
+      flex: 1;
+      text-align: center;
+  }
+  //make column classes 
+  @for $index from $loop-start to $loop-end {
+      .col-#{$index} {
+          @include col($index);
+      }
+  }
+      
+  //make offset classes
+  @for $index from $loop-start to $loop-end {
+      .offset-#{$index} {
+          @include offset($index);
+      }
+  }        
+  } 
