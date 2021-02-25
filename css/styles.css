@@ -45,6 +45,7 @@
       grid-template-rows: repeat(7, 7.7vw);
       align-items: end;
       justify-items: center;
+      background-color: yellow;
     }
 
     .cell:nth-child(1) {
